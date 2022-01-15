@@ -1,5 +1,6 @@
 // Identicon.tsx
 import { useEffect, useRef } from "react";
+import React from "react";
 import { useEthers } from "@usedapp/core";
 import styled from "@emotion/styled";
 import Jazzicon from "@metamask/jazzicon";

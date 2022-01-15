@@ -13,6 +13,7 @@ export default function ConnectButton({ handleOpenModal }: Props) {
   const etherBalance = useEtherBalance(account);
 
   function handleConnectWallet() {
+    console.log("HELLO")
     activateBrowserWallet();
   }
 

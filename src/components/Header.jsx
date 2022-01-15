@@ -50,7 +50,8 @@ function Header() {
 							<li>...</li>
 						</ul>
 					</div>
-					<div className="auth_button">
+					<div //className="auth_button"
+					>
 						<ConnectButton handleOpenModal={onOpen} />
 						{/* <button className="login_button">Connect to a wallet</button> */}
 						{/* <button className="signup_button">Sign up</button> */}
@@ -59,7 +60,7 @@ function Header() {
 			</div>
 			<div className="heading">
 				<div className="main_heading">
-					<p className="title"> Today </p>
+					<p className="title"> Today !!!</p>
 					<span className="sub_title">Popular | Newest</span>
 				</div>
 				<h3>Makers working today</h3>
