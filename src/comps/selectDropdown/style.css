@@ -1,0 +1,12 @@
+
+select{
+  background-color: #ffffff;
+  color: black;
+  border: 0px;
+  padding:8px;
+  border-radius:5px;
+  font-family: 'Titillium Web', sans-serif;
+  font-weight: bold;
+  font-size:16px;
+  cursor: pointer;
+}

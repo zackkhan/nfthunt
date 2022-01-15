@@ -1,28 +1,26 @@
 import React from "react";
 import "../styles/card.scss";
 
-function Card(product) {
+function Card(nft_collection) {
 	return (
 		<div className="product_container">
 			<div className="image_container">
-				<img src={product.thumbnail.image_url} alt={product.name} />
+				<img src={""} alt={"API loading..."} />
 			</div>
 			<div>
-				<h3>{product.name}</h3>
-				<p className="product_description">{product.tagline}</p>
+				<h3>{nft_collection.collection_name}</h3>
+				<p className="product_description">{"No description provided."}</p>
 				<span>
-					{product.topics.map(tag => (
-						<button>{tag.name}</button>
-					))}
+        <button>ETH</button>
 				</span>
 			</div>
 			<div className="votes">
 				<span className="angle_up">▲</span>
 				<button
 					className="votes_count"
-					onClick={() => product.updateCount(product.id)}
+					onClick={() => nft_collection.updateCount(nft_collection.collection_address)}
 				>
-					{product.votes_count}
+					{nft_collection.votes_count}
 				</button>
 			</div>
 		</div>

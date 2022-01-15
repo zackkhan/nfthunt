@@ -1,0 +1,139 @@
+.info{
+  display:flex;
+  border: 1px solid #868E96;
+  border-radius:10px;
+  padding:3rem;
+}
+
+
+.details{
+  display: flex;
+}
+
+.details h3{
+  margin:5px 0px 35px 0px;
+}
+
+.details  h2{
+  margin:5px 0px 3px 0px;
+}
+
+.title-cont h3, h2{
+  white-space: nowrap; 
+  max-width: 80%;
+  overflow: hidden;
+  text-overflow: ellipsis; 
+}
+
+.image{
+ min-width:300px;
+ max-width:300px;
+ margin-right:5%;
+ display: flex;
+ align-items:center;
+ justify-content: center;
+}
+
+.graph-cont{
+ position: relative;
+ width: 100%;
+ margin-top:30px;
+}
+
+.graph{
+margin-top:30px;
+height: 500px;
+width:100%;
+min-width: 100%;
+}
+
+.graph-loader{
+  position:absolute;
+  top:40%;
+  left: 50%;
+  margin-left: -50px
+}
+
+.graph-err{
+  position:absolute;
+  top:50%;
+  left: 50%;
+  margin-left: -100px
+}
+
+
+.graph-header{
+  display: flex;
+  width:100%;
+  height:50px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.collection-img{
+  width:100%;
+  height:100%;
+}
+
+.bottom-section{
+  margin-top:50px;
+}
+
+
+
+.collection-display{
+  margin-top:30px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  border: 1px solid #868E96;
+  border-radius:10px;
+  padding:3rem;
+}
+
+
+.nft{
+  width:200px;
+  height:200px;
+  cursor: pointer;
+  object-fit: contain;
+  display: flex;
+  align-items:center;
+  justify-content: center;
+  margin:8px 0px 8px 0px;
+}
+
+
+.collection-load {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top:3%;
+  border: 1px solid #868E96;
+  border-radius:10px;
+  padding:3rem;
+}
+
+
+.collection-table {
+  margin-top:20px;
+}
+
+.collection-table td, tr, th{
+  padding:8px 60px 0px 0px;
+  border:none;
+}
+
+.collection-table .title-row{
+  font-size:20px;
+  color:#00D8D5;
+  font-weight: bold;
+}
+
+.collection-table .data-row{
+  color:#F2F2F2;
+  font-size:24px;
+  font-weight:bold;
+}
+

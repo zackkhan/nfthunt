@@ -1,0 +1,12 @@
+.content{
+  height:40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.select-chain{
+  position: absolute;
+  top:50px;
+  right:80px;
+}

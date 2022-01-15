@@ -1,78 +1,42 @@
-import React from "react";
+import React, {useEffect, useState} from 'react'
 import Card from "./Card";
 import Sidebar from "./Sidebar";
-import config from "../config.js";
+// import config from "../config.js";
+// import SelectDropdown from '../comps/selectDropdown'
+// import Table from '../comps/table'
+// import Banner from '../comps/banner'
+import { useNavigate } from "react-router-dom";
+import { CONFIG } from '../config'
+// TODO: Add loader
+// import Loader from '../../assets/covalent-logo-loop_dark_v2.gif'
+import axios from 'axios';
+// import './style.css'
 
-// const products = [
-// 	{
-// 		name: "SelfOne",
-// 		description: "Free template for PowerPoint, Keynote and Google Slides",
-// 		tags: ["DESIGN TOOLS", "PRODUCTIVITY"],
-// 		vote: 419,
-// 		img:
-// 			"https://ph-files.imgix.net/3b8fff05-5ac3-4e2b-b902-4606c677d40a?auto=format&auto=compress&codec=mozjpeg&cs=strip&w=80&h=80&fit=crop&dpr=2"
-// 	},
-// 	{
-// 		name: "Explo",
-// 		description: "Explore and analyze data without SQL or Excel",
-// 		tags: ["ANALYTICS", "WEB APP"],
-// 		vote: 276,
-// 		img:
-// 			"https://ph-files.imgix.net/b2d336ea-0c78-430c-8891-cad23d6e316a?auto=format&auto=compress&codec=mozjpeg&cs=strip&w=80&h=80&fit=crop&dpr=2"
-// 	},
-// 	{
-// 		name: "Startup 911",
-// 		description:
-// 			"Free list of discounts for startups. All you need for growth",
-// 		tags: ["DESIGN TOOLS", "PRODUCTIVITY"],
-// 		vote: 312,
-// 		img:
-// 			"https://ph-files.imgix.net/8753162a-ebc7-4237-8d4c-e12e142f2c63?auto=format&auto=compress&codec=mozjpeg&cs=strip&w=80&h=80&fit=crop&dpr=2"
-// 	},
-// 	{
-// 		name: "ChartMogul",
-// 		description: "Work with your subscription data like never before.",
-// 		tags: ["ANALYTICS", "SAAS"],
-// 		vote: 226,
-// 		img:
-// 			"https://ph-files.imgix.net/383c5ede-49db-4a3f-8978-7ba8150907ba?auto=format&auto=compress&codec=mozjpeg&cs=strip&w=80&h=80&fit=crop&dpr=2"
-// 	},
-// 	{
-// 		name: "Mailbrew",
-// 		description:
-// 			"Automated email digests from Twitter, Reddit, YouTube & more",
-// 		tags: ["EMAIL", "PRODUCTIVITY"],
-// 		vote: 472,
-// 		img:
-// 			"https://ph-files.imgix.net/f64667ec-0201-4f20-9a03-161ab227a936?auto=format&auto=compress&codec=mozjpeg&cs=strip&w=80&h=80&fit=crop&dpr=2"
-// 	},
-// 	{
-// 		name: "SpotiApp",
-// 		description: "Export music to Spotify from any musical services",
-// 		tags: ["IPHONE", "MUSIC"],
-// 		vote: 354,
-// 		img:
-// 			"https://ph-files.imgix.net/331c9402-1670-49ea-9acf-dbffbfc6382d?auto=format&auto=compress&codec=mozjpeg&cs=strip&w=80&h=80&fit=crop&dpr=2"
-// 	},
-
-// 	{
-// 		name: "SaaS Landing Page",
-// 		description:
-// 			"The best SaaS landing page examples for design inspiration",
-// 		tags: ["DESIGN TOOLS", "DEVELOPER TOOLS"],
-// 		vote: 627,
-// 		img:
-// 			"https://ph-files.imgix.net/ec8385c2-d317-4cf6-ac1a-e20c8d8f6b89?auto=format&auto=compress&codec=mozjpeg&cs=strip&w=80&h=80&fit=crop&dpr=2"
-// 	},
-// 	{
-// 		name: "Flutter Dating",
-// 		description: "The live Sunday dating app",
-// 		tags: ["IPHONE", "DATING"],
-// 		vote: 869,
-// 		img:
-// 			"https://ph-files.imgix.net/2a750d4a-ab47-4b84-a124-3acd044b8ed6?auto=format&auto=compress&codec=mozjpeg&cs=strip&w=80&h=80&fit=crop&dpr=2"
-// 	}
+// const nft_collection = [
+// {
+// "chain_id":1
+// "collection_name":"Sandbox's LANDs"
+// "collection_address":"0x50f5474724e0ee42d9a4e711ccfb275809fd6d4a"
+// "volume_wei_24h":"10503076942328900000000"
+// "volume_quote_24h":34918684
+// "avg_volume_wei_24h":"22932482406831700000"
+// "avg_volume_quote_24h":76241.67
+// "contract_deployment_at":NULL
+// "market_cap_wei":"240605775622884000000000"
+// "market_cap_quote":799921540
+// "transaction_count_alltime":84228
+// "unique_wallet_purchase_count_alltime":17652
+// "unique_token_ids_sold_count_alltime":36948
+// "max_price_wei":"150000000000000000000"
+// "max_price_quote":498692.22
+// "floor_price_wei_7d":"15670121050250700000"
+// "floor_price_quote_7d":52097.117
+// "gas_quote_rate":3324.6147
+// "quote_currency":"USD"
+// "opening_date":"2022-01-14"
+// }, .... This is what this looks like! 
 // ];
+
 const images = [
 	{
 		img:
@@ -123,46 +87,52 @@ const images = [
 			"https://ph-avatars.imgix.net/304202/original?auto=format&auto=compress&codec=mozjpeg&cs=strip&w=30&h=30&fit=crop"
 	}
 ];
+
+// const API_KEY = 'ckey_c2d8d88841e8485e9d5a94699c1';
 class Cards extends React.Component {
+
 	constructor(props) {
 		super(props);
 		this.state = {
 			data: []
 		};
 	}
-	updateCount = id => {
-		let updatedData = this.state.data.map(product => {
-			if (product.id === id) {
-				product.votes_count += 1;
+	updateCount = collection_address => {
+		let updatedData = this.state.data.map(nft_collection => {
+			if (nft_collection.collection_address === collection_address) {
+        if (nft_collection.votes_count === null) {
+          nft_collection.votes_count = 0
+        } 
+				nft_collection.votes_count += 1;
 			}
-			return product;
+			return nft_collection;
 		});
 		this.setState({ data: updatedData });
 	};
-	componentDidMount() {
-		fetch("https://api.producthunt.com/v1/posts/", {
+  // TODO: when we make it interoperable, need to change the "1" to an abstract chain id. don't know how to do that yet dynamically via dropdown yet so will be eth for now. Good thing is this will only load nfts on that chain so! 
+  componentDidMount() {
+		fetch("https://api.covalenthq.com/v1/1/nft_market/?&key=ckey_c2d8d88841e8485e9d5a94699c1", {
 			method: "GET",
 			headers: {
 				Accept: "application/json",
 				"Content-Type": "application/json",
-				Authorization: "Bearer " + config.token,
-				Host: "api.producthunt.com"
 			}
 		})
 			.then(res => res.json())
 			.then(resData => {
-				console.log(resData.posts);
-				this.setState({ data: resData.posts });
+				console.log(resData);
+				this.setState({ data: resData.data.items });
 			})
 			.catch(err => console.log(err));
 	}
+  
 	render() {
 		return (
 			<>
 				<div className="container">
 					<div className="product_list">
-						{this.state.data.map(product => (
-							<Card {...product} updateCount={this.updateCount} />
+						{this.state.data.map(nft_collection => (
+							<Card {...nft_collection} updateCount={this.updateCount} />
 						))}
 					</div>
 					<div className="side_container">
