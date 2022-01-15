@@ -1,7 +1,18 @@
 import React from "react";
 import "../styles/header.scss";
+import ConnectButton from "./ConnectButton.tsx";
+import {
+	Spacer,
+	Box,
+	Flex,
+	Image,
+	Icon,
+	useDisclosure,
+	HStack
+  } from "@chakra-ui/react";
 
 function Header() {
+	const { isOpen, onOpen, onClose } = useDisclosure();
 	return (
 		<div>
 			<div className="header_contianer">
@@ -40,8 +51,9 @@ function Header() {
 						</ul>
 					</div>
 					<div className="auth_button">
-						<button className="login_button">Log in</button>
-						<button className="signup_button">Sign up</button>
+						<ConnectButton handleOpenModal={onOpen} />
+						{/* <button className="login_button">Connect to a wallet</button> */}
+						{/* <button className="signup_button">Sign up</button> */}
 					</div>
 				</header>
 			</div>
